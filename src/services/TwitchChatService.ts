@@ -2,15 +2,11 @@ import { StaticAuthProvider } from "@twurple/auth";
 import { ChatClient } from "@twurple/chat";
 import { ApiClient } from "@twurple/api";
 
-import * as fs from "fs";
-import path from "path";
-
 export class TwitchChatService {
   public apiClient;
   public chatClient;
 
   private broadcasterName;
-  private lastRaiderFile;
 
   constructor() {
     const clientId = process.env.CLIENTID || "";
@@ -18,17 +14,12 @@ export class TwitchChatService {
     const authProvider = new StaticAuthProvider(clientId, accessToken);
 
     this.broadcasterName = process.env.BROADCASTER || "";
-
-    const apiClient = new ApiClient({ authProvider })
-    this.apiClient = apiClient;
-
+    this.apiClient = new ApiClient({ authProvider });
     this.chatClient = new ChatClient({
       authProvider,
       channels: [this.broadcasterName],
       requestMembershipEvents: true,
     });
-
-    this.lastRaiderFile = this.getLastRaiderFileName();
 
     this.chatClient.connect();
   }
@@ -59,35 +50,10 @@ export class TwitchChatService {
     );
   }
 
-  updateLastRaiderFile(username: string) {
-    fs.writeFile(this.lastRaiderFile, username, (err: any) => {
-      if (err) {
-        console.error(err);
-      }
-    });
-  }
-
-  lastRaiderPromo(broadcasterName: string) {
-    return fs.readFile(
-      this.lastRaiderFile,
-      "utf8",
-      (err: any, lastRaider: any) => {
-        if (err) {
-          throw err;
-        }
-
-        this.chatClient.say(
-          broadcasterName,
-          `Besito en el siempre sucio para https://twitch.com/${lastRaider} no te ahueves y dale un follow!`
-        );
-      }
+  say(message: string) {
+    this.chatClient.say(
+      this.broadcasterName,
+      message
     );
-  }
-
-  getLastRaiderFileName() {
-    const appDir = path.resolve(__dirname, "../../");
-    const fileName = "last_raider.txt";
-
-    return `${appDir}/${fileName}`;
   }
 }
