@@ -1,14 +1,10 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validateRequest } from '../middlewares/validate-request';
-import { OpenAIService } from '../services/open-ai-service';
-import { TwitchChatService } from '../services/twitch-service';
 import { auth } from '../middlewares/auth';
+import { assistantRequest } from '../controllers/assistant-controller';
 
 const router = express.Router();
-const twitchService = new TwitchChatService();
-const openAIService = new OpenAIService();
-
 
 /**
  * @swagger
@@ -60,22 +56,6 @@ router.post('/api/bot/assistant', [
     body('type')
         .isIn(['twitch', 'nightbot'])
         .withMessage('Type must be twitch or nighbot')
-], validateRequest, auth, async (req: Request, res: Response) => {
-    const { message, type } = req.body;
-    const active = JSON.parse(process.env.MODERATION_ACTIVE || "false");
-
-    if (!active) {
-        res.send({ moderation: null });
-        return;
-    }
-
-    const moderation = await openAIService.assistant(message, type);
-
-    if (moderation) {
-        twitchService.say(moderation);
-    }
-
-    res.send({ moderation });
-});
+], validateRequest, auth, assistantRequest);
 
 export { router as assistantRouter };
