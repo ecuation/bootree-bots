@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 export class OpenAIService {
     private openAiApi;
-    private moderationTypes: string[] = ['nightbot'];
+    private moderationTypes: string[] = ['nightbot', 'twitch'];
 
     constructor() {
         this.openAiApi = new OpenAI({

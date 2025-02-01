@@ -5,7 +5,6 @@ import { ApiClient } from "@twurple/api";
 export class TwitchChatService {
   public apiClient;
   public chatClient;
-
   private broadcasterName;
 
   constructor() {
@@ -34,7 +33,7 @@ export class TwitchChatService {
 
     if (broadcaster && user) {
       await this.apiClient.moderation.banUser(broadcaster.id, {
-        reason: "Blacklisted user from Twitch",
+        reason: "Blacklisted user from Twitch insights",
         user: user.id,
       });
     }
