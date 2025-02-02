@@ -1,7 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
-import { auth } from '../middlewares/auth';
+import { auth, validateRequest } from '@bootree/common';
 import { assistantRequest } from '../controllers/assistant-controller';
 
 const router = express.Router();

@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
-import { NotFoundError } from './errors/not-found-error';
-import { errorHandler } from './middlewares/error-handler';
+import { NotFoundError, errorHandler } from '@bootree/common';
 import { assistantRouter } from './routes/assistant';
 import { swaggerSpec } from './routes/swagger';
 

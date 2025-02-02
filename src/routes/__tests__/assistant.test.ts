@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { OpenAIService } from '../../services/open-ai-service';
 import { generateToken } from '../../actions/jwt-generator';
-import { RevokedToken } from '../../models/revoked-token';
+import { RevokedToken } from '@bootree/common';
 
 jest.mock('../../services/open-ai-service');
 jest.mock('../../services/twitch-service');
