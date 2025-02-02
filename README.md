@@ -28,8 +28,12 @@ This project provides an API for processing moderation requests and optionally r
     MODERATION_ACTIVE=true
     ```
 
-4. Run tests
-    ```sh 
+## Tests
+
+All endpoints have test for happy paths and unhappy paths, you can run tests by the following command
+
+1. 
+    ```sh
     npm run test
     ```
 
@@ -44,4 +48,4 @@ This project provides an API for processing moderation requests and optionally r
 
 ## API Endpoints
 
-There is swagger documentation in path to view an test endpoints `http:localhost:3000/api/bots/api-docs`
+There is swagger documentation in path to view an test endpoints `http://bootree.test/api/bot/api-docs`
