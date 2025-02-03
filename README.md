@@ -46,6 +46,10 @@ All endpoints have test for happy paths and unhappy paths, you can run tests by 
 
 2. The API will be available at `http://localhost:3000`.
 
-## API Endpoints
+## API Endpoints documentation (Swagger)
 
-There is swagger documentation in path to view an test endpoints `http://bootree.test/api/bot/api-docs`
+There is swagger documentation in path to view an test endpoints [here](http://bootree.test/api/bot/api-docs)
+
+## Diagrams
+
+Architecture and API Figma diagrams [here](https://www.figma.com/deck/kClBxJfOraS0cWa2JjpLCS/Building-a-scalable-microservices-architecture-presentation?node-id=1-1053&t=EVK31kJ8Xx8vq604-1)
